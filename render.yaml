@@ -26,14 +26,17 @@ services:
           name: url-shortener-redis
           property: connectionString
       - key: BASE_URL
-        sync: false  # You'll set this manually after deployment
+        sync: false
+
+  # Redis Cache Service
+  - type: redis
+    name: url-shortener-redis
+    plan: free
+    maxmemoryPolicy: allkeys-lru
+    ipAllowList: []
 
 databases:
   # PostgreSQL Database
   - name: url-shortener-db
     databaseName: url_shortener
-    plan: free
-
-  # Redis Cache
-  - name: url-shortener-redis
     plan: free
