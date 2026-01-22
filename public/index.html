@@ -260,7 +260,6 @@
 <body>
     <div class="container">
         <h1>⚡ URL Shortener <span class="badge">Redis Powered</span></h1>
-        <p class="subtitle">Lightning-fast URL shortening with intelligent caching</p>
 
         <div class="input-group">
             <label for="urlInput">Enter your long URL</label>
@@ -287,25 +286,12 @@
             <div class="original-url">
                 Original: <span id="originalUrl"></span>
             </div>
-            <div class="stats-link">
+            <!-- <div class="stats-link">
                 <a href="#" id="statsLink" target="_blank">📊 View Statistics</a>
-            </div>
+            </div> -->
         </div>
 
-        <div class="features">
-            <div class="feature">
-                <div class="feature-icon">⚡</div>
-                <div class="feature-text">Lightning Fast</div>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">🔒</div>
-                <div class="feature-text">Secure</div>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">📊</div>
-                <div class="feature-text">Analytics</div>
-            </div>
-        </div>
+        
     </div>
 
     <script>
@@ -316,7 +302,7 @@
         const shortUrlDiv = document.getElementById('shortUrl');
         const originalUrlSpan = document.getElementById('originalUrl');
         const copyBtn = document.getElementById('copyBtn');
-        const statsLink = document.getElementById('statsLink');
+        // const statsLink = document.getElementById('statsLink');
 
         // Shorten URL
         shortenBtn.addEventListener('click', async () => {
@@ -351,7 +337,7 @@
                     // Show result
                     shortUrlDiv.textContent = data.data.shortUrl;
                     originalUrlSpan.textContent = data.data.originalUrl;
-                    statsLink.href = `/api/stats/${data.data.shortCode}`;
+                    // statsLink.href = `/api/stats/${data.data.shortCode}`;
                     result.classList.add('show');
                     copyBtn.textContent = 'Copy';
                     copyBtn.classList.remove('copied');
