@@ -14,6 +14,11 @@ const urlService = require('./services/urlService');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Update BASE_URL for production if not set
+if (process.env.NODE_ENV === 'production' && !process.env.BASE_URL) {
+  process.env.BASE_URL = `https://${process.env.RENDER_EXTERNAL_HOSTNAME || 'localhost:3000'}`;
+}
+
 // Middleware
 app.use(cors()); // Enable CORS
 app.use(express.json()); // Parse JSON request bodies
@@ -97,16 +102,16 @@ app.use((err, req, res, next) => {
 // Start server
 app.listen(PORT, () => {
   console.log(`
-╔═══════════════════════════════════════════════════════════════════╗
-║   URL Shortener Server Started                                    ║
-║                                                                   ║
-║   Port: ${PORT}                                                   ║
+╔════════════════════════════════════════╗
+║   URL Shortener Server Started        ║
+║                                        ║
+║   Port: ${PORT}                       ║
 ║   Environment: ${process.env.NODE_ENV || 'development'}           ║
-║   Base URL: ${process.env.BASE_URL}                               ║
-║                                                                   ║
-║   Redis Cache: Enabled                                            ║
-║   Database: PostgreSQL                                            ║
-╚═══════════════════════════════════════════════════════════════════╝
+║   Base URL: ${process.env.BASE_URL}   ║
+║                                        ║
+║   Redis Cache: Enabled                 ║
+║   Database: PostgreSQL                 ║
+╚════════════════════════════════════════╝
   `);
   console.log('Ready to shorten URLs! 🚀\n');
 });
